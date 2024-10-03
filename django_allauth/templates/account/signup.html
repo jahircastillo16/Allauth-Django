@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="max-w-lg w-full bg-white shadow-lg rounded-lg px-8 py-10">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Crear una cuenta</h2>
+        
+        <form class="space-y-6 mb-2 mt-2" method="post" action="{% url 'account_signup' %}" novalidate>
+            {% csrf_token %}
+            
+            <div class="space-y-6">
+                <!-- Campo de nombre de usuario -->
+                <div class="relative">
+                    <label for="username" class="block text-gray-700 text-sm font-bold mb-1">Nombre de usuario:</label>
+                    {{ form.username|add_class:"shadow-sm border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-indigo-300" }}
+                    {% if form.username.errors %}
+                    <ul class="text-sm text-red-600 mt-1">
+                        {% for error in form.username.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Campo de correo electrónico -->
+                <div class="relative">
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-1">Correo electrónico:</label>
+                    {{ form.email|add_class:"shadow-sm border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-indigo-300" }}
+                    {% if form.email.errors %}
+                    <ul class="text-sm text-red-600 mt-1">
+                        {% for error in form.email.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Campo de contraseña -->
+                <div class="relative">
+                    <label for="password1" class="block text-gray-700 text-sm font-bold mb-1">Contraseña:</label>
+                    {{ form.password1|add_class:"shadow-sm border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-indigo-300" }}
+                    {% if form.password1.errors %}
+                    <ul class="text-sm text-red-600 mt-1">
+                        {% for error in form.password1.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Campo de confirmar contraseña -->
+                <div class="relative mb-2">
+                    <label for="password2" class="block text-gray-700 text-sm font-bold mb-1">Confirmar contraseña:</label>
+                    {{ form.password2|add_class:"shadow-sm border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-indigo-300" }}
+                    {% if form.password2.errors %}
+                    <ul class="text-sm text-red-600 mt-1">
+                        {% for error in form.password2.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Botón de registro -->
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full focus:outline-none focus:shadow-outline">
+                Registrarse
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

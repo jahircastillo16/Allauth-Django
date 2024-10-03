@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Allauth sencillo{% endblock %}</title>
+    <!-- Incluye el CSS compilado de Tailwind -->
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    <style>
+        /* Asegura que el body use flexbox y ocupa todo el espacio */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Asegura que el body ocupa al menos el 100% de la altura de la ventana */
+        }
+        main {
+            flex: 1; /* Permite que el main ocupe el espacio restante */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Barra de navegación -->
+    <nav class="bg-blue-600 shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-black font-bold text-xl">
+                Allauth sencillo
+            </div>
+            <ul class="flex space-x-8">
+                <li>
+                    <a href="{% url 'account_login' %}" class="block py-2 px-3 text-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Iniciar sesión
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'account_signup' %}" class="block py-2 px-3 text-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500">
+                        <i class="fas fa-user-plus mr-2"></i> Registrarse
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-8 px-4">
+        <div class="bg-black rounded-lg shadow-lg p-6 py-8">
+            {% block content %}
+            <!-- Aquí se cargarán las diferentes vistas (login, signup, etc.) -->
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-black py-4 mt-8">
+        <div class="container mx-auto text-center">
+            &copy; {{ current_year }} Allauth sencillo. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>    
+
+</html>
